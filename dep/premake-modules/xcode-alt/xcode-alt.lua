@@ -24,7 +24,7 @@
 
 		-- Xcode always uses Mac OS X path and naming conventions
 
-		os = "macosx",
+		targetos = "macosx",
 
 		-- The capabilities of this action
 

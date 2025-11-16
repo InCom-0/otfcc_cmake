@@ -73,19 +73,19 @@ workspace "otfcc"
 		location "build/vs"
 		toolset "v141_clang_c2"
 		defines { '_CRT_SECURE_NO_WARNINGS', '_CRT_NONSTDC_NO_DEPRECATE' }
-		flags { "StaticRuntime" }
+		-- flags { "StaticRuntime" }
 		includedirs { "dep/polyfill-msvc" }
 	filter "action:vs2015"
 		location "build/vs"
 		toolset "msc-llvm-vs2014"
 		defines { '_CRT_SECURE_NO_WARNINGS', '_CRT_NONSTDC_NO_DEPRECATE' }
-		flags { "StaticRuntime" }
+		-- flags { "StaticRuntime" }
 		includedirs { "dep/polyfill-msvc" }
 	filter "action:ninja"
 		location "build/ninja"
 	filter {"system:windows", "action:ninja"}
 		defines { '_CRT_SECURE_NO_WARNINGS', '_CRT_NONSTDC_NO_DEPRECATE' }
-		flags { "StaticRuntime" }
+		-- flags { "StaticRuntime" }
 		includedirs { "dep/polyfill-msvc" }
 	filter "action:gmake"
 		location "build/gmake"
