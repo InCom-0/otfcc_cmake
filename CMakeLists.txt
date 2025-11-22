@@ -47,7 +47,7 @@ target_sources(otfcc-lib
 target_compile_features(otfcc-lib PRIVATE c_std_11)
 
 add_subdirectory(dep)
-target_link_libraries(otfcc-lib PRIVATE dep-lib)
+target_link_libraries(otfcc-lib PUBLIC dep-lib)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "GNU")
   target_compile_options(otfcc-lib PRIVATE -Wno-multichar)
