@@ -44,7 +44,7 @@ target_sources(otfcc-lib
   BASE_DIRS
   incl)
 
-target_compile_features(otfcc-lib PRIVATE c_std_11)
+target_compile_features(otfcc-lib PUBLIC c_std_11)
 
 add_subdirectory(dep)
 target_link_libraries(otfcc-lib PUBLIC dep-lib)
