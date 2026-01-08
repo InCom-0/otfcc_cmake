@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <Windows.h>
-#include "getopt.h"
+#include <getopt.h>
 
 #ifdef _MSC_VER
 #include "winfns.h"

@@ -1,6 +1,6 @@
-#include "dep/json-builder.h"
-#include "otfcc/sfnt.h"
-#include "otfcc/font.h"
+#include <json-builder.h>
+#include <otfcc/internal/sfnt.h>
+#include <otfcc/internal/font.h>
 
 #include "aliases.h"
 #include "platform.h"

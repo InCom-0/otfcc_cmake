@@ -1,6 +1,6 @@
-#include "otfcc/sfnt.h"
-#include "otfcc/font.h"
-#include "otfcc/sfnt-builder.h"
+#include <otfcc/internal/sfnt.h>
+#include <otfcc/internal/font.h>
+#include <otfcc/internal/sfnt-builder.h>
 
 #include "aliases.h"
 #include "platform.h"

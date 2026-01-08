@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "dep/sds.h"
+
+#include <sds.h>
 
 #ifdef _WIN32
 // Windows

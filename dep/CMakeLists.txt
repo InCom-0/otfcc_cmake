@@ -1,13 +1,13 @@
-add_library(otfcc-lib_dep STATIC)
+add_library(otfcc_lib_dep STATIC)
 
-set(SRC_otfcc-lib_dep json-builder/src/json-builder.c json-parser/src/json.c sds/src/sds.c sds/src/sdsalloc.h)
+set(SRC_otfcc_lib_dep json-builder/src/json-builder.c json-parser/src/json.c sds/src/sds.c sds/src/sdsalloc.h)
 set_source_files_properties(
-    ${SRC_otfcc-lib_dep}
+    ${SRC_otfcc_lib_dep}
     PROPERTIES LANGUAGE C
 )
-target_sources(otfcc-lib_dep PRIVATE ${SRC_otfcc-lib_dep})
+target_sources(otfcc_lib_dep PRIVATE ${SRC_otfcc_lib_dep})
 
-target_sources(otfcc-lib_dep
+target_sources(otfcc_lib_dep
     PUBLIC
     FILE_SET pub_headers
     TYPE HEADERS
