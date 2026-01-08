@@ -15,16 +15,15 @@ if(CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC")
   add_compile_definitions(NOMINMAX)
 
   set_source_files_properties(
-    src/vf/vq.c
+    src/lib/vf/vq.c
     PROPERTIES
     COMPILE_OPTIONS "/wd4098;/wd4715"
   )
   set_source_files_properties(
-    src/table/_TSI.c
+    src/lib/table/_TSI.c
     PROPERTIES
     COMPILE_OPTIONS "/wd4715"
   )
-
 endif()
 
 
