@@ -16,9 +16,4 @@ target_sources(otfcc-lib_dep
     json-parser/include
     sds/include
     uthash/include
-    intl/include
 )
-
-add_subdirectory(nowide)
-add_subdirectory(intl)
-target_link_libraries(otfcc-lib_dep PUBLIC nowide-lib intl-lib)
