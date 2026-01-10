@@ -93,7 +93,11 @@ void readEntireFile(char *inPath, char **_buffer, long *_length) {
 
 void readEntireStdin(char **_buffer, long *_length) {
 #ifdef _WIN32
-	freopen(NULL, "rb", stdin);
+	// freopen(NULL, "rb", stdin);
+	{
+		FILE* temp_stdin;
+		freopen_s(&temp_stdin, NULL, "rb", stdin);
+	}
 #endif
 	static const long BUF_SIZE = 0x400000;
 	static const long BUF_MIN = 0x1000;

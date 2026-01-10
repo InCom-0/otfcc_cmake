@@ -19,16 +19,6 @@ elseif(USING_MSVC_STL)
 endif()
 
 
-# If we are using MSVC_STL then the default is not to build the tools (because they can't be built)
-# If the user explicitly requests them, then the configure step will error out with sensible message (see below) 
-if((NOT OTFCC_LIB_BUILD_OTFCCDUMP) AND (NOT OTFCC_LIB_BUILD_TOOLS) AND USING_MSVC_STL)
-  set(OTFCC_LIB_BUILD_OTFCCDUMP OFF)
-endif()
-
-if((NOT OTFCC_LIB_BUILD_OTFCCBUILD) AND (NOT OTFCC_LIB_BUILD_TOOLS) AND USING_MSVC_STL)
-  set(OTFCC_LIB_BUILD_OTFCCBUILD OFF)
-endif()
-
 option(OTFCC_LIB_BUILD_TOOLS "Build CLI tools" ${PROJECT_IS_TOP_LEVEL})
 option(OTFCC_LIB_BUILD_OTFCCDUMP "Build CLI tool: otfccdump" ${OTFCC_LIB_BUILD_TOOLS})
 option(OTFCC_LIB_BUILD_OTFCCBUILD "Build CLI tool: otfccbuild" ${OTFCC_LIB_BUILD_TOOLS})
@@ -58,7 +48,7 @@ endif()
 ### Target specification - otfcc_lib ###
 ########################################################
 
-add_library(otfcc_lib)
+add_library(otfcc_lib STATIC)
 add_library(otfcc_lib::otfcc_lib ALIAS otfcc_lib)
 
 file(GLOB_RECURSE SRC_otfcc_lib src/lib/**.c)
@@ -67,7 +57,6 @@ set_source_files_properties(
   PROPERTIES LANGUAGE C
 )
 target_sources(otfcc_lib PRIVATE ${SRC_otfcc_lib})
-
 target_sources(otfcc_lib
   PRIVATE
   FILE_SET priv_headers_insource
@@ -95,14 +84,6 @@ endif()
 ### Target specification - otfccdump ###
 ########################################################
 if(OTFCC_LIB_BUILD_OTFCCDUMP)
-  if(USING_MSVC_STL)
-    message(FATAL_ERROR
-      "It is impossible to build otfccdump using MSVC STL.\n"
-      "This is expected behavior of otfcc_cmake.\n"
-      "Building would require getopt.h which MSVC STL does not possess.\n"
-      "Possible solutions: 1) Don't build otfccdump, 2) Use stdlibc++ or libc++ on Windows (through MSYS2) isntead of MSVC STL, 3) Provide some working getopt.h through some third party sources (which exist but are not included)."
-    )
-  endif()
 
   add_executable(otfccdump)
   target_sources(otfccdump PRIVATE src/tools/otfccdump.c src/tools/stopwatch.c)
@@ -116,8 +97,6 @@ if(OTFCC_LIB_BUILD_OTFCCDUMP)
 
   target_link_libraries(otfccdump PRIVATE otfcc_lib)
 
-  target_compile_features(otfccdump PRIVATE c_std_11)
-
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "GNU")
     target_compile_options(otfccdump PRIVATE -Wno-multichar)
   endif()
@@ -128,14 +107,6 @@ endif(OTFCC_LIB_BUILD_OTFCCDUMP)
 ### Target specification - otfccbuild ###
 ########################################################
 if(OTFCC_LIB_BUILD_OTFCCBUILD)
-  if(USING_MSVC_STL)
-    message(FATAL_ERROR
-      "It is impossible to build otfccbuild using MSVC STL.\n"
-      "This is expected behavior of otfcc_cmake.\n"
-      "Building would require getopt.h which MSVC STL does not possess.\n"
-      "Possible solutions: 1) Don't build otfccbuild, 2) Use stdlibc++ or libc++ on Windows (through MSYS2) isntead of MSVC STL, 3) Provide some working getopt.h through a some third party sources (which exist but are not included)."
-    )
-  endif()
   add_executable(otfccbuild)
   target_sources(otfccbuild PRIVATE src/tools/otfccbuild.c src/tools/stopwatch.c)
 
@@ -147,8 +118,6 @@ if(OTFCC_LIB_BUILD_OTFCCBUILD)
     src/tools)
 
   target_link_libraries(otfccbuild PRIVATE otfcc_lib)
-
-  target_compile_features(otfccbuild PRIVATE c_std_11)
 
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "GNU")
     target_compile_options(otfccbuild PRIVATE -Wno-multichar)

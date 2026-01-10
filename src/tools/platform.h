@@ -43,7 +43,11 @@ FILE *__u8fopen(char *path, char *mode) {
 	LPWSTR wpath, wmode;
 	widen_utf8(path, &wpath);
 	widen_utf8(mode, &wmode);
-	FILE *f = _wfopen(wpath, wmode);
+
+	// FILE *f = _wfopen(wpath, wmode);
+	FILE *f = NULL;
+	errno_t err = _wfopen_s(&f, wpath, wmode);
+
 	free(wpath);
 	free(wmode);
 	return f;

@@ -17,3 +17,21 @@ target_sources(otfcc_lib_dep
     sds/include
     uthash/include
 )
+
+#####################################################################
+### Working around getopt.h absence on MSVC STL ###
+#####################################################################
+target_sources(otfcc_lib_dep
+    PUBLIC
+    FILE_SET pub_headers_getopt
+    TYPE HEADERS
+    BASE_DIRS
+    $<$<BOOL:${USING_MSVC_STL}>:${CMAKE_CURRENT_SOURCE_DIR}/polyfill-msvc>
+)
+
+if(USING_MSVC_STL)
+    target_sources(otfcc_lib_dep PRIVATE polyfill-msvc/getopt.c)
+endif()
+
+
+
