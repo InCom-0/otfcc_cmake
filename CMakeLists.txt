@@ -46,7 +46,7 @@ if(CMAKE_CXX_COMPILER_FRONTEND_VARIANT MATCHES "MSVC")
     COMPILE_OPTIONS "/wd4715"
   )
   
-elseif()
+else()
   if(BUILD_SHARED_LIBS)
     set(OTFCC_LIB_TYPE SHARED)
   else()
