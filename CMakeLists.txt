@@ -28,8 +28,8 @@ endif()
 ### Staging ###
 #####################################################################
 include(cmake/StageOutputs.cmake)
-if(incplot-lib_STAGE_OUTPUTS)
-  stageOutputDirsFor(incplot-lib)
+if(otfcc_STAGE_OUTPUTS)
+  stageOutputDirsFor(otfcc)
 endif()
 
 
