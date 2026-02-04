@@ -15,13 +15,6 @@ option(otfcc_BUILD_OTFCCDUMP "Build CLI tool: otfccdump" ${otfcc_BUILD_TOOLS})
 option(otfcc_BUILD_OTFCCBUILD "Build CLI tool: otfccbuild" ${otfcc_BUILD_TOOLS})
 
 include(cmake/stdlibQuery.cmake)
-if(USING_LIBSTDCXX)
-  message(STATUS "Using libstdc++\n")
-elseif(USING_LIBCXX)
-  message(STATUS "Using libc++\n")
-elseif(USING_MSVC_STL)
-  message(STATUS "Using MSVC STL\n")
-endif()
 
 
 #####################################################################
